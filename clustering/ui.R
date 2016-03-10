@@ -37,6 +37,7 @@ shinyUI(fluidPage(
                                "1/4 mile time"="qsec"),
                    selected="mpg"),
        sliderInput("N","Number of clusters",min=1,max=10,value=3,step=1),
+       helpText("PLEASE WAIT couple of seconds to allow plot load"),
        helpText("This application load mtcars dataset and allows to do kmeans clustering. User is allowed to select two variables to generate 
                 plot and clustering result. X and Y inputs select variables. Plot is rendered every time when user changes any app input")
     ),

@@ -9,7 +9,6 @@
 
 library(shiny)
 library(ggplot2)
-library(plotly)
 df<-mtcars
 # Define server logic required to draw a histogram
 shinyServer(function(input, output) {
@@ -29,6 +28,6 @@ shinyServer(function(input, output) {
     p<-p + geom_point(size=4,colour=clust$clust)+
             geom_point(data=centers, aes(x=V1,y=V2),shape=3,size=10,colour=rownames(centers))
     print(p)
-  },height=900)
+  },height=600)
   
 })

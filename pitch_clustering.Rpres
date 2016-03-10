@@ -1,0 +1,69 @@
+Course project: Shiny Application and Reproducible Pitch
+========================================================
+author: Victor Bucha
+date: 10 March, 2016
+autosize: true
+
+Overview
+========================================================
+This simple application illustrates cluster analysis. 
+- Clustering algorithm: **Kmeans**
+- Dataset: **mtcars**
+
+Intruction on how to use this application can be viewed on the left pane of application.  
+
+APP URL: https://buchav.shinyapps.io/clustering/  
+Source URL: https://github.com/buchav/shinyapp  
+
+
+Functionality
+========================================================
+
+When the application is launched, a scatter plot and clustering result are shown.  
+
+
+X and Y variables can be selected from the corresponding inputs. 
+
+Use the slider to select the number of clusters for Kmeans algorithm.
+
+The plot will be automaticaly updated.
+
+K-Means clustering for default parameters
+========================================================
+- X-variable: **Weight**
+- Y-variable: **Miles/gallon**
+- Number of clusters: **3**
+
+```{r, echo=FALSE,fig.width=10}
+
+    suppressMessages(library(ggplot2))        
+    suppressMessages(library(plotly))        
+    df<-mtcars
+    set.seed(123)
+    c1<-"wt"
+    c2<-"mpg"
+    df_combined<-df[,c(c1,c2)]  
+    clust<-kmeans(df_combined,3)
+    centers=as.data.frame(clust$centers)
+    names(centers)<-c("V1","V2")
+                
+     p <- ggplot(df, aes_string(c1, c2))
+     p<-p + geom_point(size=4,colour=clust$clust)+
+             geom_point(data=centers, aes(x=V1,y=V2),shape=3,size=10,colour=rownames(centers))
+     p
+    # p <- plot_ly(df, x = wt, y = mpg,
+    #     color = factor(clust$clust), mode = "markers")
+    # p
+```
+
+How it works
+========================================================
+**server.R**
+
+- The plot is automatically updated by monitoring changes in an user input.
+
+- Once a change is detected, the k-means clustering is re-run and the graph is re-plotted.
+
+**ui.R**
+
+- fluidPage was used to create 2 panes: one for the input parameters and one for the plot.

@@ -10,10 +10,11 @@ This simple application illustrates cluster analysis.
 - Clustering algorithm: **Kmeans**
 - Dataset: **mtcars**
 
-Intruction on how to use this application can be viewed on the left pane of application.  
+Instruction on how to use this application can be viewed on the left pane of application.  
 
 APP URL: https://buchav.shinyapps.io/clustering/  
 Source URL: https://github.com/buchav/shinyapp  
+This document source URL: https://github.com/buchav/shinyapp/blob/master/pitch_clustering.Rpres
 
 
 Functionality
